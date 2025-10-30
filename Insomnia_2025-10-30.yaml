@@ -1,0 +1,92 @@
+type: collection.insomnia.rest/5.0
+name: Scratch Pad
+meta:
+  id: wrk_scratchpad
+  created: 1698368928522
+  modified: 1698368928522
+  description: ""
+collection:
+  - name: whastapp-assistent
+    meta:
+      id: fld_ba2d4a4548614d9ea3752fd0dc4916e1
+      created: 1761866255636
+      modified: 1761866257522
+      sortKey: -1761866255636
+      description: ""
+    children:
+      - name: localhost
+        meta:
+          id: fld_dfcc1c4a6675453e84f7f53d7273d028
+          created: 1761866266211
+          modified: 1761866266211
+          sortKey: -1761866266211
+          description: ""
+        children:
+          - url: http://localhost:3065/webhook/messages
+            name: webhook messages
+            meta:
+              id: req_e4832d3c866344e2bf719fea564a20a7
+              created: 1761866272395
+              modified: 1761866487411
+              isPrivate: false
+              description: ""
+              sortKey: -1761866272395
+            method: POST
+            body:
+              mimeType: application/x-www-form-urlencoded
+              params:
+                - name: Body
+                  value: Gastei 50 reais no mercado
+                  id: pair_ee558391fd4245cbb10e0fe73a49d687
+                - id: pair_5e5d1619ddb6456397c6451b71147667
+                  name: From
+                  value: whatsapp:+5511999999999
+                  description: ""
+                  disabled: false
+            headers:
+              - name: Content-Type
+                value: application/x-www-form-urlencoded
+              - name: User-Agent
+                value: insomnia/11.6.1
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:3065/serverstatus
+            name: server status
+            meta:
+              id: req_fb256e7fe86546ab99a8541b1d792248
+              created: 1761866417520
+              modified: 1761866426176
+              isPrivate: false
+              description: ""
+              sortKey: -1761866417520
+            method: GET
+            headers:
+              - name: User-Agent
+                value: insomnia/11.6.2
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_99d30891da4bdcebc63947a8fc17f076de878684
+    created: 1698368947887
+    modified: 1698368947887
+environments:
+  name: Base Environment
+  meta:
+    id: env_99d30891da4bdcebc63947a8fc17f076de878684
+    created: 1698368947817
+    modified: 1698368947817
+    isPrivate: false
