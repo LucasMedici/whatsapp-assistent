@@ -39,6 +39,7 @@ export async function processUserMessage(message: string) {
   const MAX_MESSAGE_LENGTH = 150;
   if (!sanitizedMessage) {
     return {
+      error: 'EMPTY_MESSAGE',
       valor: null,
       tipo: 'outro',
       categoria: 'não identificado',
@@ -48,6 +49,7 @@ export async function processUserMessage(message: string) {
 
   if (sanitizedMessage.length > MAX_MESSAGE_LENGTH) {
     return {
+      error: 'MESSAGE_TOO_LONG',
       valor: null,
       tipo: 'outro',
       categoria: 'não identificado',
@@ -67,27 +69,37 @@ export async function processUserMessage(message: string) {
     });
 
     const result = completion.choices[0].message?.content;
-    if (!result) throw new Error('No response from OpenAI');
+    if (!result) {
+      return {
+        error: 'OPENAI_NO_RESPONSE',
+        valor: null,
+        tipo: 'outro',
+        categoria: 'não identificado',
+        comentario: 'Erro no processamento da IA',
+      };
+    }
 
     try {
       const parsed = JSON.parse(result);
       return parsed;
     } catch (parseError) {
-      console.warn('GPT retornou JSON inválido, usando fallback:', parseError);
+      console.warn('GPT retornou JSON inválido:', result);
       return {
+        error: 'INVALID_JSON_RESPONSE',
         valor: null,
         tipo: 'outro',
         categoria: 'não identificado',
-        comentario: '',
+        comentario: 'Erro no formato da resposta da IA',
       };
     }
   } catch (error) {
-    console.error('Erro ao processar mensagem do usuário:', error);
+    console.error('Erro ao processar mensagem:', error);
     return {
+      error: 'OPENAI_API_ERROR',
       valor: null,
       tipo: 'outro',
       categoria: 'não identificado',
-      comentario: '',
+      comentario: 'Erro na comunicação com a IA',
     };
   }
 }

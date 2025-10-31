@@ -14,6 +14,11 @@ router.post('/messages', async (req: Request, res: Response) => {
 
   try {
     const messageProcessed = await processUserMessage(Body);
+    
+    if (messageProcessed.error) {
+      console.warn('Erro no processamento:', messageProcessed.error);
+      return res.status(400).json({ error: 'Não foi possível processar a mensagem' });
+    }
 
     try {
       await prisma.transaction.create({
@@ -28,13 +33,14 @@ router.post('/messages', async (req: Request, res: Response) => {
       });
       console.log('Mensagem salva no banco com sucesso');
     } catch (dbError) {
-      console.error('Erro ao salvar mensagem no banco de dados:', dbError);
+      console.error('Erro ao salvar no banco:', dbError);
+      return res.status(500).json({ error: 'Erro interno do servidor' });
     }
 
     return res.status(200).json(messageProcessed);
   } catch (error) {
     console.error('Erro no webhook:', error);
-    return res.status(500).send('Erro ao processar a mensagem');
+    return res.status(500).json({ error: 'Erro ao processar a mensagem' });
   }
 });
 
