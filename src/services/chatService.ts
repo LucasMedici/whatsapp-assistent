@@ -1,4 +1,5 @@
 import OpenAI from 'openai';
+import dotenv from 'dotenv';
 
 const clientOpenAI = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
@@ -58,17 +59,18 @@ export async function processUserMessage(message: string) {
   }
 
   try {
-    const completion = await clientOpenAI.chat.completions.create({
-      model: 'gpt-4o-mini',
-      messages: [
-        { role: 'system', content: prompt },
-        { role: 'user', content: message },
-      ],
-      temperature: 0.2,
-      max_tokens: 120,
-    });
+    // const completion = await clientOpenAI.chat.completions.create({
+    //   model: 'gpt-4o-mini',
+    //   messages: [
+    //     { role: 'system', content: prompt },
+    //     { role: 'user', content: message },
+    //   ],
+    //   temperature: 0.2,
+    //   max_tokens: 120,
+    // });
 
-    const result = completion.choices[0].message?.content;
+    // const result = completion.choices[0].message?.content;
+    let result = 'Teste sem gpt-4o-mini';
     if (!result) {
       return {
         error: 'OPENAI_NO_RESPONSE',
