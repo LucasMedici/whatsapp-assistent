@@ -1,9 +1,10 @@
-import express from 'express';
 import dotenv from 'dotenv';
+dotenv.config();
+
+import express from 'express';
 import webhookRoutes from './routes/webhook';
 
 const app = express();
-dotenv.config();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 

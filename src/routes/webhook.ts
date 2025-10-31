@@ -1,5 +1,5 @@
 import { Router, Request, Response } from 'express';
-// import { processUserMessage } from '../services/chatService';
+import { processUserMessage } from '../services/chatService';
 import { PrismaClient } from '../generated/prisma/client';
 
 const router = Router();
@@ -13,8 +13,7 @@ router.post('/messages', async (req: Request, res: Response) => {
   console.log('Conteúdo: ', Body);
 
   try {
-    // const messageProcessed = await processUserMessage(Body);
-    const messageProcessed = {} as any; // Placeholder enquanto o processUserMessage está comentado
+    const messageProcessed = await processUserMessage(Body);
 
     if (messageProcessed.error) {
       console.warn('Erro no processamento:', messageProcessed.error);

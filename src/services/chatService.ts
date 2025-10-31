@@ -1,6 +1,8 @@
 import OpenAI from 'openai';
-import dotenv from 'dotenv';
 
+console.log(' Carregando variáveis de ambiente...');
+console.log('PORT:', process.env.PORT);
+console.log('OPENAI_API_KEY:', process.env.OPENAI_API_KEY ? 'Definida' : 'Não encontrada');
 const clientOpenAI = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
