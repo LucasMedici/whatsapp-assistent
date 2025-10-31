@@ -1,8 +1,5 @@
 import OpenAI from 'openai';
 
-console.log(' Carregando variáveis de ambiente...');
-console.log('PORT:', process.env.PORT);
-console.log('OPENAI_API_KEY:', process.env.OPENAI_API_KEY ? 'Definida' : 'Não encontrada');
 const clientOpenAI = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
@@ -61,18 +58,18 @@ export async function processUserMessage(message: string) {
   }
 
   try {
-    // const completion = await clientOpenAI.chat.completions.create({
-    //   model: 'gpt-4o-mini',
-    //   messages: [
-    //     { role: 'system', content: prompt },
-    //     { role: 'user', content: message },
-    //   ],
-    //   temperature: 0.2,
-    //   max_tokens: 120,
-    // });
+    const completion = await clientOpenAI.chat.completions.create({
+      model: 'gpt-4o-mini',
+      messages: [
+        { role: 'system', content: prompt },
+        { role: 'user', content: message },
+      ],
+      temperature: 0.2,
+      max_tokens: 120,
+    });
 
-    // const result = completion.choices[0].message?.content;
-    let result = 'Teste sem gpt-4o-mini';
+    const result = completion.choices[0].message?.content;
+
     if (!result) {
       return {
         error: 'OPENAI_NO_RESPONSE',
