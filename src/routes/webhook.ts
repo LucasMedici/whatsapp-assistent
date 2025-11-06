@@ -5,6 +5,9 @@ import { PrismaClient } from '../generated/prisma/client';
 const router = Router();
 const prisma = new PrismaClient();
 
+
+
+
 router.post('/messages', async (req: Request, res: Response) => {
   const { Body, From } = req.body;
 
