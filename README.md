@@ -1,4 +1,4 @@
-# 💬 Jorge - Assistent
+# 💬 Jorge - Assistent (Backend)
 
 Um assistente pessoal de finanças via Jorge Assistent APP.
 
