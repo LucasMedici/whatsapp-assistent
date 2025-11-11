@@ -1,4 +1,4 @@
-# 💬 Whatsapp - Assistent
+# 💬 Jorge - Assistent
 
 Um assistente pessoal de finanças via Jorge Assistent APP.
 
@@ -22,17 +22,18 @@ As mensagens são recebidas por um **webhook** integrado com a aplicação **Rea
    npm install
    ```
 2. Configure o .env com suas credenciais do banco e Twilio
-3. Inicie o servidor:
-  ```bash
-   npm run dev
-   ```
-4. Exponha o servidor local com o ngrok:
+   
+4. Inicie o servidor:
      ```bash
+      npm run dev
+      ```
+4. Exponha o servidor local com o ngrok:
+   ```bash
    ngrok http 3000
    ```
 
 ## ▲ Prisma
 1. Sincronize o banco com as migrations
-     ```bash
+   ```bash
    npx prisma migrate dev
    ```
