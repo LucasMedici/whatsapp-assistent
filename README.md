@@ -1,19 +1,19 @@
 # 💬 Whatsapp - Assistent
 
-Um assistente pessoal de finanças via WhatsApp.
+Um assistente pessoal de finanças via Jorge Assistent APP.
 
-O **Whatsapp - Assistent** permite registrar gastos e lembretes apenas enviando mensagens de WhatsApp, como:  
+O **Jorge - Assistent** permite registrar gastos e gerar relatórios apenas conversando com o Jorge, como:  
 > “Gastei 50 reais no mercado”  
-> “Me lembre de desligar o forno em 10 minutos”
+> “Gere um relatório com meus gastos dos últimos 3 mêses”
 
-As mensagens são recebidas por um **webhook** integrado com a **Twilio**, processadas por um servidor **Node.js (Express)** e armazenadas em um banco **PostgreSQL** via **Prisma ORM**.
+As mensagens são recebidas por um **webhook** integrado com a aplicação **React Native**, processadas por um servidor **Node.js (Express)** e armazenadas em um banco **PostgreSQL** via **Prisma ORM**.
 
 ## 🚀 Tecnologias
 - Node.js + Express  
 - TypeScript  
 - Prisma ORM  
 - PostgreSQL  
-- Twilio API (Webhook WhatsApp)  
+- OpenAI API
 - ngrok (para ambiente local)
 
 ## 📦 Execução local
