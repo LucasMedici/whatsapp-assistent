@@ -11,17 +11,28 @@ generator client {
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
-  schemas = ["public","assistent"]
+  schemas  = ["public", "assistent"]
 }
 
 model transaction {
-  id String @id @default(uuid())
-  phone String
-  type String
-  amount Float
-  category String?
+  id          String   @id @default(uuid())
+  phone       String
+  type        String
+  amount      Float
+  category    String?
   description String?
-  messageId String?
+  messageId   String?
+  createdAt   DateTime @default(now())
+
+  @@schema("assistent")
+}
+
+model user {
+  id        String   @id @default(uuid())
+  phone     String   @unique
+  name      String
+  email     String   @unique
+  password  String
   createdAt DateTime @default(now())
 
   @@schema("assistent")
