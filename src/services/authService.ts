@@ -1,10 +1,12 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { findUserByEmail } from './userService';
-import 'dotenv/config';
 
 const JWT_SECRET = process.env.JWT_SECRET
-const JWT_EXPIRES_IN = process.env.JWT_EXPIRES_IN 
+const JWT_EXPIRES_IN = process.env.JWT_EXPIRES_IN_SECONDS 
+
+console.log(JWT_SECRET)
+console.log(JWT_EXPIRES_IN)
 
 export async function hashPassword(password : string) {
     const salt = await bcrypt.genSalt(10);
