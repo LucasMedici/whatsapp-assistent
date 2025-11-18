@@ -21,7 +21,8 @@
     "ngrok": "^5.0.0-beta.2",
     "openai": "^6.7.0",
     "pg": "^8.16.3",
-    "twilio": "^5.10.4"
+    "twilio": "^5.10.4",
+    "zod": "^4.1.12"
   },
   "devDependencies": {
     "@types/bcryptjs": "^3.0.0",

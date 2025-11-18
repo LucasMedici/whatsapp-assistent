@@ -4,7 +4,7 @@ import { findUserByEmail } from './userService';
 import 'dotenv/config';
 
 const JWT_SECRET = process.env.JWT_SECRET
-const JWT_EXPIRES_IN = process.env.JWT_EXPIRES_IN
+const JWT_EXPIRES_IN = process.env.JWT_EXPIRES_IN 
 
 export async function hashPassword(password : string) {
     const salt = await bcrypt.genSalt(10);
@@ -24,5 +24,5 @@ export async function signLoginToken(email: string, password: string) {
     if(!ok) return null
 
     const payload = {sub: user.id, email: user.email};
-    return jwt.sign(payload, JWT_SECRET, {expiresIn: JWT_EXPIRES_IN});
+    return (jwt.sign as any)(payload, JWT_SECRET, {expiresIn: JWT_EXPIRES_IN});
 }
