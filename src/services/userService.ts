@@ -9,7 +9,12 @@ export const CreateUserSchema = z.object({
     phone: z.string().min(10, 'Telefone inválido'),
 });
 
+export const UpdateUserNameSchema = z.object({
+    name: z.string().min(1, 'Name is required'),
+});
+
 export type CreateUserInput = z.infer<typeof CreateUserSchema>;
+export type UpdateUserNameInput = z.infer<typeof UpdateUserNameSchema>;
 
 export async function createUser(data:CreateUserInput) {
 
@@ -27,4 +32,21 @@ export async function createUser(data:CreateUserInput) {
 
 export async function findUserByEmail(email:string) {
     return prisma.user.findUnique({where: {email}});
+}
+
+
+export async function updateUserName(id: string, data: UpdateUserNameInput) {
+    const validated = UpdateUserNameSchema.safeParse(data);
+
+
+    if (!validated.success) {
+        throw new Error('Dados inválidos: ' + JSON.stringify(validated.error.issues));
+    }
+
+    const updatedUser = await prisma.user.update({
+        where: { id },
+        data: { name: validated.data.name },
+        });
+    const { password, ...userWithoutPassword } = updatedUser;
+    return userWithoutPassword;
 }
