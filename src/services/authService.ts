@@ -2,8 +2,8 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { findUserByEmail } from './userService';
 
-const JWT_SECRET = process.env.JWT_SECRET
-const JWT_EXPIRES_IN = process.env.JWT_EXPIRES_IN_SECONDS 
+const JWT_SECRET = process.env.JWT_SECRET 
+const JWT_EXPIRES_IN = process.env.JWT_EXPIRES_IN 
 
 console.log(JWT_SECRET)
 console.log(JWT_EXPIRES_IN)
