@@ -5,8 +5,6 @@ import { findUserByEmail } from './userService';
 const JWT_SECRET = process.env.JWT_SECRET 
 const JWT_EXPIRES_IN = process.env.JWT_EXPIRES_IN 
 
-console.log(JWT_SECRET)
-console.log(JWT_EXPIRES_IN)
 
 export async function hashPassword(password : string) {
     const salt = await bcrypt.genSalt(10);
