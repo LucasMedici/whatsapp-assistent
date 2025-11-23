@@ -23,6 +23,6 @@ export async function signLoginToken(email: string, password: string) {
     const ok = await verifyPassword(password, user.password);
     if(!ok) return null
 
-    const payload = {sub: user.id, email: user.email};
+    const payload = {sub: user.id, email: user.email, name: user.name};
     return (jwt.sign as any)(payload, JWT_SECRET, {expiresIn: JWT_EXPIRES_IN});
 }
