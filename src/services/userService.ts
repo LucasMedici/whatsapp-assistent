@@ -34,6 +34,13 @@ export async function findUserByEmail(email:string) {
     return prisma.user.findUnique({where: {email}});
 }
 
+export async function findUserById(id:string) {
+    const user = await prisma.user.findUnique({where: {id}});
+    if (!user) return null;
+    const { password, ...userWithoutPassword } = user;
+    return userWithoutPassword;
+}
+
 
 export async function updateUserName(id: string, data: UpdateUserNameInput) {
     const validated = UpdateUserNameSchema.safeParse(data);

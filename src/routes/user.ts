@@ -1,5 +1,5 @@
 import { Router, Request, Response } from 'express';
-import { createUser, findUserByEmail, updateUserName } from '../services/userService';
+import { createUser, findUserById, updateUserName } from '../services/userService';
 import { signLoginToken, verifyPassword, hashPassword } from '../services/authService';
 
 
@@ -16,6 +16,20 @@ router.put('/:id', async (req, res) => {
         res.status(400).json({ error: error.message });
     }
 });
+
+router.get('/:id', async (req, res) => {
+    const id = req.params.id;
+
+    try{
+        const user = await findUserById(id);
+        if(!user) {
+            return res.status(404).json({error: 'User not found'});
+        }
+        res.json(user);
+    } catch (error: any) {
+        res.status(400).json({ error: error.message });
+    }
+}) 
 
 
 
