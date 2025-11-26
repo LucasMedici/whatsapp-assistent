@@ -5,18 +5,14 @@ import { PrismaClient } from '../generated/prisma/client';
 const router = Router();
 const prisma = new PrismaClient();
 
-
-
-
 router.post('/messages', async (req: Request, res: Response) => {
-  const { Body, From } = req.body;
+  const ClientMessage = req.body;
 
   console.log('Mensagem recebida');
-  console.log('De: ', From);
-  console.log('Conteúdo: ', Body);
+  console.log('Conteúdo: ', ClientMessage);
 
   try {
-    const messageProcessed = await processUserMessage(Body);
+    const messageProcessed = await processUserMessage(ClientMessage.userMessage.text);
 
     if (messageProcessed.error) {
       console.warn('Erro no processamento:', messageProcessed.error);
@@ -28,12 +24,12 @@ router.post('/messages', async (req: Request, res: Response) => {
     try {
       await prisma.transaction.create({
         data: {
-          phone: From,
+          phone: ClientMessage.userPhone,
           type: messageProcessed.tipo,
           amount: messageProcessed.valor,
           category: messageProcessed.categoria,
           description: messageProcessed.comentario,
-          messageId: messageProcessed.id || null,
+          messageId: ClientMessage.id,
         },
       });
       console.log('Mensagem salva no banco com sucesso');
